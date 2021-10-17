@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/** Module2 di xml
+ * @category  Webkul
+ * @package   Vendor2_Module2
+ * @author    Webkul
+ * @copyright Copyright (c) 2010-2017 Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Vendor2\Module2\Api\Data\Module2Interface" type="Vendor2\Module2\Model\Module2" />
+
+    <virtualType name="Vendor2\Module2\Model\ResourceModel\Module2\Module2\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">Vendor2_module2_records</argument>
+            <argument name="resourceModel" xsi:type="string">Vendor2\Module2\Model\ResourceModel\Module2</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="module2_record_module2_list_data_source" xsi:type="string">Vendor2\Module2\Model\ResourceModel\Module2\Module2\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Vendor2\Module2\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Vendor2\Module2\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">customLogHandler</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Vendor2\Module2\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
